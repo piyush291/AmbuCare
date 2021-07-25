@@ -1,0 +1,63 @@
+{% extends 'misc/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+{% for notification in notifications %}
+
+<div class="people container" >
+
+    {% if notification.notification_type == 1 %}
+            
+
+        <div class="bas">
+            <div class="card-hos w-50">
+                {% comment %} <img class="card-img-top img-fluid" src="{% static 'img/logo.png' %}" alt=""> {% endcomment %}
+                <div class="card-body ">
+                    <h4 class="card-title"><strong>{{ notification.patient.first_name }} {{ notification.patient.last_name }}</strong></h4>
+                    {% comment %} <h6 class="card-subtitle">{{hospital.address}}</h6> {% endcomment %}
+                    <h6 class="card-subtitle">Calling</h6>
+                    <br>
+                    <h6 class="card-subtitle">{{ notification.date }}</h6>
+                    <br>
+                   
+                    <a href="" class="btn btn-primary btn-sm float-right">Accept</a>
+                    <a href="{% url 'notifications:DeleteNotification' notification.id %}" class="btn btn-danger btn-sm float-right">Decline</a>
+                    {% comment %} <a href="{% url 'DeleteNotification' notification.id %}" class="delete"></a> {% endcomment %}
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if notification.notification_type == 2 %}
+            <div class="notification">
+                {% comment %} <a href="{% url 'DeleteNotification' notification.id %}" class="delete"></a> {% endcomment %}
+
+
+                <strong>{{ notification.patient.first_name }} {{ notification.patient.last_name }}</strong> <small>@{{ notification.patient.username }}</small> 
+                <br>
+                Ended:
+                <p>{{ notification.text_preview }}</p>
+                <strong><small>{{ notification.date }}</small></strong>
+            </div>
+    {% endif %}
+
+    {% if notification.notification_type == 3 %}
+            <div class="notification">
+                {% comment %} <a href="{% url 'DeleteNotification' notification.id %}" class="delete"></a> {% endcomment %}
+
+
+                <strong>{{ notification.patient.first_name }} {{ notification.patient.last_name }}</strong> <small>@{{ notification.patient.username }}</small> 
+                <br>
+                Cancelled:
+                <p>{{ notification.text_preview }}</p>
+                <strong><small>{{ notification.date }}</small></strong>
+            </div>
+    {% endif %}
+
+</div>
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'misc/base.html' %}
+{% block content %}
+<h2 class="mb-5 text-center people">{{ hospital.address }}</h2>
+{% comment %} class="list-group-item" {% endcomment %}
+<ul class="list-group mb-5 container">
+	
+        <li >
+            GOOD  
+            <span class="badge badge-success float-right">
+                {{ choice.good_votes }} vote{{ choice.good_votes | pluralize }}
+            </span>
+        </li>
+        <li >
+            AVERAGE  
+            <span class="badge badge-success float-right">
+                {{ choice.average_votes }} vote{{ choice.average_votes | pluralize }}
+            </span>
+        </li>
+        <li >
+            BAD  
+            <span class="badge badge-success float-right">
+                {{ choice.bad_votes }} vote{{ choice.bad_votes | pluralize }}
+            </span>
+        </li>
+	
+</ul>
+
+<a class="btn btn-secondary" href="{% url 'hospital:list1'%}">Back To Polls</a>
+<a class="btn btn-dark" href="{% url 'polls:details' hospital.id %}">Vote again?</a>
+{% endblock %}

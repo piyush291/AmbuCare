@@ -1,0 +1,144 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Ambulare</title>
+</head>
+<body>
+
+
+    <!-- NAVIGATION BAR  -->
+
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <div class="container">
+        
+        
+        <div class="logo pr-2">
+            <img src="{% static 'img/logo.png' %}" alt="">
+        </div>
+        <a href="{% url 'index' %}" class="navbar-brand">
+        <i>AMBULARE</i>
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarcollapse">
+        <span class="navbar-toggler-icon">
+          
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarcollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="{% url 'hospital:HOSPITAL' %}" class="nav-link">
+              BOOKINGS
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'activity' %}" class="nav-link">
+            ACTIVITIES
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'aboutus' %}" class="nav-link">
+          ABOUT US
+      </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'hospital:list1' %}" class="nav-link">
+          FEEDBACK
+        </a>
+      </li>
+
+      
+
+      {% if user.is_authenticated %}
+
+      <li class="nav-item">
+        <a href="{% url 'notifications:ShowNotifications' %}" class="nav-link">
+          Notifications
+        </a>
+      </li>
+
+   
+
+      <li class="nav-item">
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="login.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Enter Details
+              </a>
+            
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'register_patient' %}">PATIENT</a>
+                {% comment %} <a class="dropdown-item" href="{% url 'hospital:changes' %}">HOSPITAL</a> {% endcomment %}
+                {% comment %} <a class="dropdown-item" href="{% url 'register_photo' %}">Upload Photo of Patient</a> {% endcomment %}
+              </div>
+          </div>
+      </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+      {% else %}
+
+      <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+              </li>
+        
+      </li>
+      {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+  <footer class="navbar-fixed-bottom">
+    <div class="end">
+        <div class="icon-bar">
+          <p>
+              <a href="#"><i class="fa fa-home"></i></a><strong>ADDRESS : 291 J P NAGAR</strong>
+               <br>
+          </p> 
+          <p>
+              <a href="#"><i class="fa fa-envelope"></i></a><strong>piyushsethi291@gmail.com</strong> 
+              <br>
+          </p>
+          <p> 
+              <a href="#"><i class="fas fa-phone-alt"></i></a> <strong>8196967111</strong>
+              <br>
+         </p>
+
+        </div>
+        <section>
+        
+            <a href="#" class="facebook"><img src"{% static 'img/fblogo.png' %}"></a>
+            <a href="#" class="twitter"><img src="{% static 'img/twitter.jfif' %}"></a>
+            <a href="#" class="linkedin"><img src="{% static 'img/linkedin.jfif' %}"></a>
+            <a href="#" class="instagram"><img src="{% static 'img/instagram.jfif' %}"></a>
+
+        </section>
+
+    </div>
+</footer >
+
+</body>
+</html>

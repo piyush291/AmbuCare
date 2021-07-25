@@ -1,0 +1,20 @@
+{% extends 'misc/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<br><br><br><br>
+<div class="container">
+
+    <form action="{% url 'register_photo' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+         {{ form.as_p }}
+        <input type="submit" value="Create" class="btn btn-outline-success">
+    </form> 
+</div> 
+
+    <br><br><br><br>
+
+
+{% endblock %}

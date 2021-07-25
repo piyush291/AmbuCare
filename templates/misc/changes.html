@@ -1,0 +1,22 @@
+{% extends 'misc/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<br><br><br><br>
+<div class="container">
+
+    
+    <a  href="{% url 'register_hospital' %}">Basic Hospital Details</a><br>
+    <a  href="{% url 'register_driver' %}">Driver Details</a><br>
+    <a  href="{% url 'register_ambulance' %}">Ambulance Details</a><br>
+    <a  href="{% url 'register_doctor' %}">Doctor Details</a>
+
+
+</div> 
+
+    <br><br><br><br>
+
+
+{% endblock %}

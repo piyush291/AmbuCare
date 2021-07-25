@@ -1,0 +1,106 @@
+{% extends 'misc/base.html' %}
+
+{% block content %}
+{% load static%}
+
+  <!-- here -->
+
+
+  <div class="main  special">
+
+    <div class="sidenav">
+        <a href="#lungs">lungs</a>
+        <a href="#heart">heart</a>
+        <a href="#multi-special">multi-special</a>
+        <a href="#corona">corona</a>
+    </div>
+    
+
+
+
+        {% for hospital in  hospital_list %}
+        
+        <div class="bas">
+            <div class="card-hos">
+                <img class="card-img-top img-fluid" src="{% static 'img/logo.png' %}" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">{{hospital.name}}</h4>
+                    <h6 class="card-subtitle">{{hospital.address}}</h6>
+                    <br>
+                    {% comment %} <a class="btn btn-outline-primary" href="{{hospital.get_absolute_url}}">avail</a> {% endcomment %}
+                    <a class="btn btn-outline-primary" href="{% url 'src:show_hospital' hospital.id %}">avail</a>
+                </div>
+            </div>
+        </div>
+  
+        {% endfor %}
+
+
+    <h3 class="text-center">LUNGS</h3>
+    <section id="lungs"></section>
+        <div class="bas">  
+
+            <div class="card-hos">
+                <img class="card-img-top img-fluid" src="{% static 'img/logo.png' %}" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">hospital name</h4>
+                    <h6 class="card-subtitle">address</h6>
+                    <a class="btn btn-outline-primary" href="after_booking.html">avail</a>
+                </div>
+            </div>
+        
+        </div>
+    </section>
+
+
+
+    <h3 class="text-center">HEART</h3>
+    <section id="heart"></section> 
+        <div class="bas">
+            
+            <div class="card-hos">
+                <img class="card-img-top img-fluid" src="{% static 'img/logo.png' %}" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">hospital name</h4>
+                    <h6 class="card-subtitle">address</h6>
+                    <p class="card-text">speciality in </p>
+                    <p>No of services available:  </p>
+                    <a class="btn btn-outline-primary" href="after_booking.html">avail</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+    <h3 class="text-center">MULTI-SPECIAL</h3>
+    <section id="multi-special"></section> 
+        <div class="bas">
+            
+            <div class="card-hos">
+                <img class="card-img-top img-fluid" src="{% static 'img/logo.png' %}" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">hospital name</h4>
+                    <h6 class="card-subtitle">address</h6>
+                    <p class="card-text">speciality in </p>
+                    <p>No of services available:  </p>
+                    <a class="btn btn-outline-primary" href="after_booking.html">avail</a>
+                </div>
+            </div>
+        
+        </div>
+    </section>
+    
+ </div>
+ {% endblock %}
+
+  
+
+
+
+
+  

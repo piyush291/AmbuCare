@@ -1,0 +1,138 @@
+<!-- AIzaSyA0i-V4GvhxdNTvEImifm1bj8dcw3WcSmU -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Directions Service</title>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBglFp5EX1Ey1O_hVfQEnbqyDwqReWUze4&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+      .button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+
+
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: "Roboto", "sans-serif";
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+    <script>
+
+      {% comment %} 
+        if after . () does not come then it is a property and if it comes then it is a function 
+        the document keyword is a handle on the object that contains the HTMLDocument. ... When you pass the "html" selector to jQuery, it uses this string to find any elements in the document object model that match the selector (in all cases, there will be one html element).
+      {% endcomment %}
+
+      function initMap() {
+        const directionsService = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: { lat: 31.3355026, lng: 75.5548680 },
+        });
+        directionsRenderer.setMap(map);
+
+        const onChangeHandler = function () {
+          calculateAndDisplayRoute(directionsService, directionsRenderer);
+        };
+        document
+          .getElementById("start")
+          .addEventListener("change", onChangeHandler);
+        document
+          .getElementById("end")
+          .addEventListener("change", onChangeHandler);
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        directionsService.route( 
+          {
+            origin: {
+              query: document.getElementById("start").value,
+            },
+            destination: {
+              query: document.getElementById("end").value,
+            },
+            travelMode: google.maps.TravelMode.DRIVING,
+          },
+          (response, status) => {
+            if (status === "OK") {
+              directionsRenderer.setDirections(response);
+            } else {
+              window.alert("Directions request failed due to " + status);
+            }
+          }
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Driver's Phone Number : {{driver_info.phone}}</h3>
+    <h3>Ambulance Number Plate : {{ambulance_info.num_plate}}</h3>
+    <h3>Doctor on Duty : {{doctor_info.name}} specialized in {{doctor_info.specialization}}</h3>
+    <div id="floating-panel">
+      <b>Start: </b>
+      <select id="start">
+
+        
+
+      <option value="{{patient_info.address}}">{{patient_info.address}}</option>
+      <option value="510-LA, Model Town, Jalandhar, Punjab">static</option> 
+
+
+      </select>
+      <b>End: </b>
+      <select id="end">
+
+        
+        <option value="{{hospital_info.address}}">{{hospital_info.address}}</option>
+        
+      </select>
+    </div>
+
+    <div id="map">
+
+    </div>
+    <div>
+      <a class="button" href="{% url 'src:booked' hospital_info.id %}">BOOK</a>
+    </div>
+  </body>
+</html>

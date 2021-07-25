@@ -1,0 +1,27 @@
+{% extends 'misc/base.html' %}
+
+{% block content %}
+{% load static%}
+<p class="people"></p>
+
+<h1 class="text-center mb-3">LIST AND FEEDBACK</h1>
+
+  {% for hospital in  hospital_list %}
+        
+        <div class="bas">
+            <div class="card-hos">
+                {% comment %} <img class="card-img-top img-fluid" src="{% static 'img/logo.png' %}" alt=""> {% endcomment %}
+                <div class="card-body">
+                    <h4 class="card-title">{{hospital.name}}</h4>
+                    <h6 class="card-subtitle">{{hospital.address}}</h6>
+                    <br>
+                    <a href="{% url 'src:show_hospital' hospital.id %}" class="btn btn-outline-primary" >Avail</a>
+                    <a href="{% url 'polls:details' hospital.id %}" class="btn btn-primary btn-sm float-right">Give Feedback</a>
+                    <a href="{% url 'polls:results' hospital.id %}" class="btn btn-secondary float-right btn-sm">See Reviews</a>
+                </div>
+            </div>
+        </div>
+  
+        {% endfor %}
+
+{% endblock %}
