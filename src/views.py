@@ -158,7 +158,7 @@ def booked(request,id):
     server.starttls()
     server.ehlo()
 
-    server.login('piyushsethi291@gmail.com','heypiy8782')
+    server.login('piyushsethi291@gmail.com','..........')
 
     subject='Ride booked'
     h_add = hospital_info.address
